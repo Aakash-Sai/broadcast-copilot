@@ -1,12 +1,18 @@
 # Azure judge-demo hosting
 
+**Live:** https://broadcast-copilot-aakash-56875895.westus2.cloudapp.azure.com
+
+**Source:** https://github.com/Aakash-Sai/broadcast-copilot
+
+Deployed October 25, 2026. The running application was built from commit `172c8b2882c78dc051148b853600eec580547bf4`; subsequent documentation updates do not change that application image.
+
 Rollout update: the original West US 3 B2s was restricted for this Free Trial subscription. The selected deployment is `Standard_B2pls_v2` (ARM64, 2 vCPU/4 GiB) in **West US 2**, with the `server-arm64` Ubuntu image. Quota and Azure deployment validation passed. Its current Linux retail rate is **$0.0336/hour**, giving a base estimate of about **$18** for the conservative 408-hour window; the earlier $25 hosting allowance still applies. The trial spending limit is verified ON, and the user confirmed credit expiry November 11. The West US 3 steps below describe the original plan; use `AZURE_LOCATION=westus2`, `VM_SIZE=Standard_B2pls_v2`, `CPU_ARCHITECTURE=arm64` when reproducing the selected deployment. Foundry remains in its existing region.
 
-Prepared October 25, 2026 for West US 3, supplied by the user. Nothing in this guide has created Azure resources. The subscription, quota, trial expiry and credit spending limit have not been inspected. This is a reviewed deployment package; a live Azure rollout remains to be done.
+The original plan targeted West US 3. After direct Azure sign-in, the available West US 2 ARM size was selected and deployed in the dedicated `broadcast-copilot-demo` resource group. The Free Trial spending limit was verified ON; the user confirmed trial expiry November 11. The existing Foundry settings were transferred to private server configuration over host-key-verified SSH after explicit user approval. No keys, databases or private SSH material were uploaded to GitHub or included in the image.
 
 ## Architecture and cost
 
-One Ubuntu 24.04 Linux VM (proposed `Standard_B2s`, 2 vCPU/4 GiB) runs the existing application container and Caddy. The app has one worker and uses SQLite on the VM's persistent managed OS disk. Docker volumes and certificates survive process/container/VM restarts. They do not survive deleting their disk/volume. Do not put them on Azure temporary storage or a network file share.
+One Ubuntu 24.04 Linux VM (`Standard_B2pls_v2`, ARM64, 2 vCPU/4 GiB) runs the existing application container and Caddy. The app has one worker and uses SQLite on the VM's persistent managed OS disk. Docker volumes and certificates survive process/container/VM restarts. They do not survive deleting their disk/volume. Do not put them on Azure temporary storage or a network file share.
 
 The Azure public IP supplies a hostname such as `YOUR-LABEL.westus3.cloudapp.azure.com`. Caddy obtains and renews its HTTPS certificate; no custom domain purchase is needed. Judges see one HTTPS URL, with no login or installation. A dedicated resource group keeps the demo separate from the existing Foundry deployment. The current app can continue using that existing model endpoint.
 
@@ -14,12 +20,12 @@ Public Linux retail prices retrieved from Microsoft's [Retail Prices API](https:
 
 | Item | Rate | Approximate 408-hour cost |
 | --- | --- | --- |
-| B2s Linux VM, West US 3 | $0.0416/hour | $16.98 |
+| B2pls v2 Linux VM, West US 2 | $0.0336/hour | $13.71 |
 | Standard static IPv4 | $0.005/hour | $2.04 |
 | 32 GiB E4 Standard SSD managed OS disk | $2.40/month, prorated using 730 hours | $1.35 |
-| Base total | | About $21 |
+| Base total | | About $18 |
 
-Allow $25 credit for hosting through the end of judging, plus model calls, disk operations/mount meters and any excess data transfer. See `deploy/azure/PRICE_ESTIMATE.json` for the recorded assumptions. This is not an invoice or a hard dollar cap. No free allowances or discounts are assumed. VM availability and quota in this subscription still need checking; reprice any replacement size before provisioning. Ongoing base cost is roughly $37/month, before variable charges. Do not enable Bastion, premium disks, NAT Gateway, paid monitoring or paid support as incidental defaults.
+Allow $25 credit for hosting through the end of judging, plus model calls, disk operations/mount meters and any excess data transfer. See `deploy/azure/PRICE_ESTIMATE.json` for the recorded assumptions. This is not an invoice or a hard dollar cap. No free allowances or discounts are assumed. VM availability and quota in this subscription still need checking; reprice any replacement size before provisioning. Ongoing base cost is roughly $31/month, before variable charges. Do not enable Bastion, premium disks, NAT Gateway, paid monitoring or paid support as incidental defaults.
 
 Before creating billable resources, verify the user-reported $180 credit, its expiry through November 10, 2026 at 11:59 pm Pacific, and the subscription's spending-limit status. Budget alerts are notifications, not hard stops. A pay-as-you-go subscription does not provide the same trial spending-limit protection. No promise of $0 out-of-pocket can be made from a public price estimate alone.
 
@@ -144,4 +150,4 @@ Public-mode model generation reserves a slot in SQLite before sending a request.
 - Test two browser workspaces, check health/logs and verify the watchdog and backup timers actually execute on Ubuntu.
 - Check credit consumption and leave the service available through November 10, 2026 at 11:59 pm Pacific. Keep the public repository and under-two-minute video as separate submission artifacts.
 
-Validated locally: Bicep compiles, Caddy configuration validates, backend/frontend checks and public-mode HTTP/restart/backup rehearsal. Not yet validated: Azure resource deployment, Linux container build/runtime, real certificate issuance, timers on Ubuntu, regional quota and live judge access. The recorded price estimate is public pricing, not an account billing inspection.
+Verified on the deployment: Azure quota/template validation and resource provisioning; native ARM64 Linux container build; 78 passing backend tests in the deployed image; trusted public HTTPS; live Foundry draft generation; chart/source values; save and approval audit; browser-workspace separation; publication persistence across container restart; successful backup/watchdog execution; and an off-VM backup with a valid SQLite integrity check. Public diagnostic/probe/schema routes return 404. No external alert service or independent production-readiness certification is implied. The recorded price estimate remains public retail pricing rather than a forecasted account invoice.

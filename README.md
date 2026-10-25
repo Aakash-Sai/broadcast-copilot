@@ -1,8 +1,12 @@
 # Broadcast Copilot
 
+**[Open the live judge demo](https://broadcast-copilot-aakash-56875895.westus2.cloudapp.azure.com)** · [Public source](https://github.com/Aakash-Sai/broadcast-copilot)
+
+Hosted on Azure in West US 2. No login or personal API key is needed. All match data and player movement are synthetic.
+
 An editorial assistant for choosing evidence-backed graphics during a synthetic football match. Play a full 90-minute match or jump to a testing moment, inspect calculated evidence, generate a draft, save edits, and approve it into the audience preview. Drafts, decisions and audit history persist in SQLite. A single-server production preview adds health checks and operational logs. Spanish narration, recaps and agent orchestration remain unimplemented. See [deployment and operations](docs/DEPLOYMENT.md).
 
-An [Azure judge-demo deployment package](docs/AZURE_HOSTING.md) is prepared for West US 3, including HTTPS, a dedicated VM template, backup/watchdog timers and durable public-demo AI request ceilings. It has not provisioned resources or a public site. Generate the source-only archive with `python -m scripts.package_hosting`.
+The [Azure judge demo](docs/AZURE_HOSTING.md) is deployed on an ARM64 VM in West US 2, with HTTPS, persistent SQLite, daily backups, a local watchdog and durable public-demo AI request ceilings. Live Foundry generation, editorial actions, restart persistence and an off-VM backup were verified. All 78 backend tests passed inside the deployed image. No external email/SMS uptime alert service is configured. Generate a source-only hosting archive with `python -m scripts.package_hosting`.
 
 ## Run locally
 

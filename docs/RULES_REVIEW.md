@@ -4,7 +4,7 @@ Reviewed October 24, 2026 against the supplied OFFICIAL RULES.md and [Microsoft'
 
 ## Overall assessment
 
-Implementation update after this review: durable SQLite drafts/decisions/audit history, save-draft editing, health checks, sanitized request logs, operational counters, backups and a local production entry point have been added. The readiness limits below should now be read with that progress in mind: persistent audit storage is no longer missing. Azure hosting, external alerting and authentication remain absent; the user chose local rehearsal and excluded login. See [deployment and operations](DEPLOYMENT.md) for verified scope and the untested container package.
+Implementation update after this review: durable SQLite drafts/decisions/audit history, save-draft editing, health checks, sanitized request logs, operational counters, backups and a local production entry point have been added. The readiness limits below should now be read with that progress in mind: persistent audit storage is no longer missing. Azure hosting has since been deployed on October 25 in West US 2, and public GitHub source is available. External alert delivery and authentication remain absent; the user excluded login. See [deployment and operations](DEPLOYMENT.md) for verified scope and the untested container package.
 
 The MVP demonstrates the five-stage pipeline in section 4.1(i): replay synthetic events as a timed stream, calculate statistics, explain notable comparisons, render compact overlays, and offer casual/analyst experiences with player/team focus. Producer-triggered drafting and approval fit a broadcast workflow; full automatic publication is not needed to demonstrate this pipeline.
 
@@ -21,7 +21,7 @@ It is not ready to declare complete coverage of the challenge or submit as-is. M
 | Narrative and recap | Short event narratives and reasons | No automatic halftime/fulltime recap |
 | Data innovation | Two fictional teams, repeatable history, full match, formations and substitutions | Synthetic locations and pass destinations are not coherent player tracking; no measured speed or distance |
 | Microsoft technology | Foundry model deployment, constrained drafting and chart choices, bounded calls, factual fallback | One model-call workflow; no Foundry-managed agent orchestration, evaluation suite or cloud-native application deployment |
-| Reliability and control | Approval/editing, numeric/source checks, fallback, session separation, expiry, tests; now durable audit storage and local operational checks | No authentication, cloud hosting or external alerting; session IDs are not authorization; semantic accuracy still needs editorial review |
+| Reliability and control | Approval/editing, numeric/source checks, fallback, session separation, expiry, tests; now durable audit storage and local operational checks | No authentication or external alert delivery; session IDs are not authorization; semantic accuracy still needs editorial review |
 
 Pitch movement is explicitly illustrative. Do not use it as evidence that the system detects real formations, tactical runs, possession or tracking metrics from live footage.
 
@@ -29,7 +29,7 @@ Pitch movement is explicitly illustrative. Do not use it as evidence that the sy
 
 | Prize | Current fit | Honest positioning |
 | --- | --- | --- |
-| Best Enterprise Solution Prize | Strongest product fit; readiness incomplete | Broadcaster workflow, evidence, editable drafts and approval address a clear business need. Persistent audit records and local deployment checks are now implemented; cloud deployment and an access boundary for hosting remain unfinished. |
+| Best Enterprise Solution Prize | Strongest product fit; readiness incomplete | Broadcaster workflow, evidence, editable drafts and approval address a clear business need. Persistent audit records and local deployment checks are now implemented; public Azure hosting now demonstrates the workflow with HTTPS and usage limits; authentication and external alert delivery remain unfinished. |
 | Best Use of Microsoft Foundry Project | Relevant, but limited differentiation | Foundry drafts grounded wording and chooses constrained visuals. Calling a deployed model alone is weaker than demonstrating Foundry's development, evaluation, orchestration and management benefits. Do not claim tools we have not used. |
 | Grand Prize, First/Second Place | Thematically aligned; competitive result unknown | Clear end-to-end demonstration and practical value help. Narrow Microsoft-stack usage and limited agentic depth reduce strength under the judging rubric. |
 | Best Multi-Agent System Prize | Does not currently fit | Detection, retrieval, validation and rendering are application stages, not collaborating specialized agents. Agents used to help write code would not make the product multi-agent. |
@@ -45,4 +45,4 @@ Section 6.2 assigns 20% each to technological implementation, agentic design/inn
 4. Verify entrant registration and eligibility, project creation after September 29, 2026, ownership/permissions and no previous contest win (sections 3, 4.3, 4.4 and 4.6–4.12). These personal/project-history facts are not independently verified here.
 5. Submit by October 27, 2026, 11:59 pm Pacific. The published registration deadline was October 20 at noon Pacific; the user says they entered, but registration status has not been inspected.
 
-Recommendation: position this as a broadcast editorial copilot and target Enterprise Solution. Finish coverage and judging access before adding more features. Do not claim production readiness, a multi-agent architecture, measured tracking or odds of winning. No publication, deployment or entry submission was performed as part of this review.
+Recommendation: position this as a broadcast editorial copilot and target Enterprise Solution. Finish coverage and judging access before adding more features. Do not claim production readiness, a multi-agent architecture, measured tracking or odds of winning. The original review did not perform publication or deployment. Later work published source and deployed the Azure demo; entry submission and video upload have not been performed.

@@ -1,8 +1,8 @@
 # Local deployment and operations
 
-This milestone is a local deployment rehearsal, not an Azure deployment. No Azure resources or hosting charges were created. The native production entry point serves the built React UI and FastAPI API together on port 8080. The separate Vite development server remains available on port 5173.
+These instructions describe the local deployment rehearsal. A public Azure deployment has subsequently been completed; see [Azure hosting](AZURE_HOSTING.md) for the live link, selected region and cost estimate. The native production entry point serves the built React UI and FastAPI API together on port 8080. The separate Vite development server remains available on port 5173.
 
-For the subsequently prepared West US 3 rollout, see [Azure judge-demo hosting](AZURE_HOSTING.md). Its public-demo mode and durable call ceilings are tested locally; Azure deployment and Linux container runtime remain unverified.
+For the subsequently prepared West US 3 rollout, see [Azure judge-demo hosting](AZURE_HOSTING.md). The actual deployment uses the available West US 2 ARM VM. Public-mode call ceilings, Linux container runtime, live AI, HTTPS, restart persistence and backup were verified there.
 
 ## Run the production preview
 
@@ -64,4 +64,4 @@ For releases: back up, build/test a new image or frontend/backend release, stop 
 
 ## Access boundary
 
-Login was deliberately excluded at the user's request. This milestone binds to localhost and should remain on a trusted machine/private network. Session separation does not restrict a person who knows a workspace ID; there are no verified producer roles. Do not treat the current application as a secure, unrestricted internet service. Azure deployment, TLS, external monitoring/alerts and any perimeter access arrangement remain later work before public judging access. No live cloud deployment or independent production-readiness certification is implied.
+Login was deliberately excluded at the user's request. This milestone binds to localhost and should remain on a trusted machine/private network. Session separation does not restrict a person who knows a workspace ID; there are no verified producer roles. Do not treat the current application as a secure, unrestricted internet service. The Azure rollout uses dedicated public synthetic-demo mode, HTTPS, private diagnostics and durable AI call ceilings. It still has no producer authentication or external email/SMS uptime alerts. See the Azure guide for this public-demo boundary; no independent production-readiness certification is implied.

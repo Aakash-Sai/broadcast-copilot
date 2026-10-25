@@ -11,8 +11,8 @@ See the [October 24 rules and prize-fit review](RULES_REVIEW.md) for current cov
 - Indexed SQLite queries retrieve up to 20 comparable historical matches with time, participation and source checks.
 - Microsoft Foundry generates headlines, explanations and supported wording/layout choices on request. Numerical values are inserted by code. Substitute summaries use calculated templates without a model call.
 - Casual/analyst modes, editable headlines and wording, team-aligned compact graphics, approval, dismissal and expiry are available.
-- This is a test library with two fictional teams, not a real match feed or a production deployment.
-- SQLite now preserves saved edits, approvals, dismissals, expiry and audit versions across restarts. A local production preview serves the built UI/API with health checks and request monitoring; Azure hosting and external alerts are not deployed. Login is excluded by the user's choice. See [deployment and operations](DEPLOYMENT.md).
+- This is a test library with two fictional teams and a public Azure demo; it is not a real match feed or production broadcast integration.
+- SQLite now preserves saved edits, approvals, dismissals, expiry and audit versions across restarts. A local production preview serves the built UI/API with health checks and request monitoring; Azure hosting is deployed in West US 2; external alert delivery is not configured. Login is excluded by the user's choice. See [deployment and operations](DEPLOYMENT.md).
 
 ## Suggested demo (target 1 minute 45 seconds)
 
@@ -35,11 +35,11 @@ Before recording, run tests/build and verify actual Foundry generation. Use only
 
 - A short pitch naming the problem, product and Microsoft/Azure technologies.
 - A functioning demo video shorter than two minutes, uploaded to a supported public video URL.
-- A public GitHub repository URL with setup instructions. Review local secrets and ignored files before preparing a public export.
+- Completed: public GitHub source and setup instructions at https://github.com/Aakash-Sai/broadcast-copilot. Credentials and runtime data are excluded.
 - Completed project-page submission fields and an intended category.
-- A working, free-to-test demo or test build available through the end of judging, November 10, 2026 at 11:59 pm Pacific (section 4.8). The current localhost development app is not judge access.
+- Deployed: https://broadcast-copilot-aakash-56875895.westus2.cloudapp.azure.com. Keep it free to judges and available through November 10, 2026 at 11:59 pm Pacific (section 4.8).
 - User verification of registration, eligibility, rights and permissions, which have not been independently confirmed.
 
 The supplied rules list registration closing October 20, 2026 at 12:00 pm Pacific and submission closing October 27, 2026 at 11:59 pm Pacific. Check current organizer notices before relying on those dates.
 
-Public repository creation, video upload and entry submission remain separate actions; this document does not perform them.
+Public repository creation and Azure hosting are complete. Video upload and entry submission remain separate actions and have not been performed.
