@@ -1,6 +1,7 @@
 #cloud-config
 package_update: true
 packages:
+  - git
   - ca-certificates
   - curl
   - unattended-upgrades
