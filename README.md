@@ -1,6 +1,6 @@
 # Broadcast Copilot
 
-**[Try the live demo](https://broadcast-copilot-aakash-56875895.westus2.cloudapp.azure.com)** — no login required.
+**[Try the live demo](https://broadcast-copilot-aakash-56875895.westus2.cloudapp.azure.com)**
 
 Broadcast Copilot helps football broadcasters turn match statistics into clear, timely on-screen graphics. Built for the Microsoft Premier League hackathon, it uses a simulated match and synthetic historical data.
 
