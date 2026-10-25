@@ -1,0 +1,20 @@
+{
+  "checked_on": "2026-10-25",
+  "region": "westus3",
+  "currency": "USD",
+  "source": "https://prices.azure.com/api/retail/prices",
+  "basis": "Public Linux consumption retail rates; not an account-specific quote or free-tier eligibility check.",
+  "vm": {"size": "Standard_B2s", "vcpu": 2, "memory_gib": 4, "hourly": 0.0416},
+  "public_ip": {"sku": "Standard IPv4 Static Public IP", "hourly": 0.005},
+  "disk": {"sku": "Standard SSD E4 LRS", "size_gib": 32, "monthly": 2.4, "operations_per_10000": 0.002},
+  "conservative_runtime_hours_through_judging": 408,
+  "estimated_base_cost": 20.36,
+  "planning_allowance": "25 USD of Azure credit for hosting through November 10, excluding model calls, excess data transfer, taxes and optional services. Recheck before deployment.",
+  "notes": [
+    "The OS disk is managed persistent storage; no separate data disk is included.",
+    "Storage operations and a separately returned disk-mount meter may add small charges.",
+    "Free allowances/discounts are not assumed. Region capacity and subscription quota are not yet verified.",
+    "VM deallocation stops VM compute billing, but disk and public-IP billing can continue.",
+    "180 USD remaining credit is user-reported. Trial expiry and spending limit still need verification."
+  ]
+}

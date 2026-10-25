@@ -1,0 +1,51 @@
+services:
+  broadcast:
+    build: .
+    env_file: .env
+    environment:
+      EDITORIAL_DB_PATH: /var/lib/broadcast/editorial.sqlite3
+      WEB_CONCURRENCY: "1"
+      PUBLIC_DEMO_MODE: "1"
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - editorial-data:/var/lib/broadcast
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    pids_limit: 256
+    mem_limit: 2g
+    stop_grace_period: 30s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+  proxy:
+    image: caddy:2-alpine
+    environment:
+      APP_HOSTNAME: ${APP_HOSTNAME:?Set APP_HOSTNAME to the Azure public IP DNS name}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deploy/azure/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      - broadcast
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+volumes:
+  editorial-data:
+  caddy-data:
+  caddy-config:

@@ -1,0 +1,8 @@
+[Unit]
+Description=Broadcast Copilot readiness and disk check
+After=docker.service broadcast.service
+Requires=broadcast.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /opt/broadcast/deploy/azure/watch.sh

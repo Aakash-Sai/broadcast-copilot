@@ -1,0 +1,17 @@
+{$APP_HOSTNAME} {
+	encode zstd gzip
+	request_body {
+		max_size 64KB
+	}
+	header {
+		X-Content-Type-Options nosniff
+		Referrer-Policy no-referrer
+		X-Frame-Options DENY
+		-Server
+	}
+	@private path /api/ops /api/foundry/probe /docs /docs/* /redoc /openapi.json
+	respond @private 404
+	@api path /api/* /health/*
+	header @api Cache-Control "no-store"
+	reverse_proxy broadcast:8080
+}

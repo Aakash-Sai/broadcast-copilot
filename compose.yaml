@@ -1,0 +1,21 @@
+services:
+  broadcast:
+    build: .
+    ports:
+      - "127.0.0.1:8080:8080"
+    env_file:
+      - .env
+    environment:
+      EDITORIAL_DB_PATH: /var/lib/broadcast/editorial.sqlite3
+      WEB_CONCURRENCY: "1"
+    volumes:
+      - editorial-data:/var/lib/broadcast
+    restart: unless-stopped
+    stop_grace_period: 30s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+volumes:
+  editorial-data:
