@@ -3,6 +3,9 @@
 # Default is a read-only what-if. apply is an explicit, billable deployment.
 set -euo pipefail
 mode="${1:-plan}"
+location="${AZURE_LOCATION:-westus3}"
+vm_size="${VM_SIZE:-Standard_B2s}"
+architecture="${CPU_ARCHITECTURE:-x64}"
 if [[ "$mode" != plan && "$mode" != apply ]]; then echo 'Use plan or apply.' >&2; exit 2; fi
 : "${AZURE_RESOURCE_GROUP:?Choose a dedicated demo resource group}"
 : "${DNS_LABEL:?Choose a unique lowercase hostname label}"
@@ -25,9 +28,9 @@ if [[ "$(az group exists --name "$AZURE_RESOURCE_GROUP")" != true ]]; then
     echo 'Create the dedicated resource group first, then re-run. No VM has been created.' >&2
     exit 2
 fi
-az vm list-skus --location westus3 --size Standard_B2s --all \
+az vm list-skus --location "$location" --size "$vm_size" --all \
   --query '[].{size:name,restrictions:restrictions}' -o json
-params=(location=westus3 dnsLabel="$DNS_LABEL" adminSourceCidr="$ADMIN_SOURCE_CIDR" "sshPublicKey=$(cat -- "$SSH_PUBLIC_KEY_FILE")")
+params=(location="$location" vmSize="$vm_size" cpuArchitecture="$architecture" dnsLabel="$DNS_LABEL" adminSourceCidr="$ADMIN_SOURCE_CIDR" "sshPublicKey=$(cat -- "$SSH_PUBLIC_KEY_FILE")")
 if [[ "$mode" == plan ]]; then
     az deployment group what-if --resource-group "$AZURE_RESOURCE_GROUP" \
       --template-file "$script_dir/main.bicep" --parameters "${params[@]}"

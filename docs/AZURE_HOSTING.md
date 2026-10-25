@@ -1,5 +1,7 @@
 # Azure judge-demo hosting
 
+Rollout update: the original West US 3 B2s was restricted for this Free Trial subscription. The selected deployment is `Standard_B2pls_v2` (ARM64, 2 vCPU/4 GiB) in **West US 2**, with the `server-arm64` Ubuntu image. Quota and Azure deployment validation passed. Its current Linux retail rate is **$0.0336/hour**, giving a base estimate of about **$18** for the conservative 408-hour window; the earlier $25 hosting allowance still applies. The trial spending limit is verified ON, and the user confirmed credit expiry November 11. The West US 3 steps below describe the original plan; use `AZURE_LOCATION=westus2`, `VM_SIZE=Standard_B2pls_v2`, `CPU_ARCHITECTURE=arm64` when reproducing the selected deployment. Foundry remains in its existing region.
+
 Prepared October 25, 2026 for West US 3, supplied by the user. Nothing in this guide has created Azure resources. The subscription, quota, trial expiry and credit spending limit have not been inspected. This is a reviewed deployment package; a live Azure rollout remains to be done.
 
 ## Architecture and cost

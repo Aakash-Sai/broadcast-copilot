@@ -7,6 +7,8 @@ param sshPublicKey string
 @description('Your administrator public IPv4 CIDR, normally x.x.x.x/32. Never use 0.0.0.0/0.')
 param adminSourceCidr string
 param vmSize string = 'Standard_B2s'
+@allowed(['x64', 'arm64'])
+param cpuArchitecture string = 'x64'
 @allowed(['bcadmin'])
 param adminUsername string = 'bcadmin'
 
@@ -95,7 +97,7 @@ resource vm 'Microsoft.Compute/virtualMachines@2024-07-01' = {
       imageReference: {
         publisher: 'Canonical'
         offer: 'ubuntu-24_04-lts'
-        sku: 'server'
+        sku: cpuArchitecture == 'arm64' ? 'server-arm64' : 'server'
         version: 'latest'
       }
       osDisk: {
